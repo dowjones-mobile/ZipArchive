@@ -58,5 +58,48 @@
     XCTAssertEqualObjects(outputString, inputString, @"Data was not equal");
 }
 
+- (NSData *)generateDataFromString:(NSString *)string minimumLength:(NSUInteger)length {
+    NSMutableString *output = [string mutableCopy];
+    while ([output length] < length) {
+        [output appendString:string];
+    }
+    return [output dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (void)testComplexWriteAndRead {
+    NSString *zipPath = [NSTemporaryDirectory() stringByAppendingPathComponent:_zipFileName];
+    
+    // Write to a temporary zip
+    SSZipArchive *archive = [[SSZipArchive alloc] initWithPath:zipPath];
+    [archive open];
+    XCTAssert([archive isOpened], @"Could not open a zip file for writing");
+    
+    int items = 23;
+    for (int i = 0; i < items; i++) {
+        NSString *inputFilename = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"txt"];
+        NSData *inputData = [self generateDataFromString:inputFilename minimumLength:1 + (rand() % 128*1024)];
+        BOOL written = [archive writeData:inputData filename:inputFilename withPassword:nil];
+        XCTAssert(written, @"Could not write data");
+    }
+    
+    [archive close];
+    XCTAssert([archive isClosed], @"Could not close a zip");
+    
+    // Now read it
+    NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
+    NSError *error = nil;
+    BOOL read = [SSZipArchive unzipFileAtPath:zipPath toDictionary:contents error:&error];
+    XCTAssert(read, @"Could not read contents of zip");
+    
+    XCTAssertEqual([contents count], items, @"Should be one item in the zip");
+    for (NSString *outputFilename in [contents allKeys]) {
+        NSData *outputData = [contents objectForKey:outputFilename];
+        XCTAssertGreaterThan([outputData length], 0, @"Found an empty file");
+        NSData *compare = [self generateDataFromString:outputFilename minimumLength:[outputData length]];
+        XCTAssertNotNil(outputData, @"Could not find data in zip");
+        XCTAssertEqualObjects(outputData, compare, @"Data was not equal");
+    }
+}
+
 
 @end
