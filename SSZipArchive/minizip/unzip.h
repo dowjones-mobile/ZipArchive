@@ -19,8 +19,6 @@
 #ifndef _UNZ_H
 #define _UNZ_H
 
-#define HAVE_AES
-
 #ifdef __cplusplus
 extern "C" {
 #endif
