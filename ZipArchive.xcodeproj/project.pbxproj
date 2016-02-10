@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7044A73A1C6BEA9500EB6A93 /* ZipArchive_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044A7391C6BEA9500EB6A93 /* ZipArchive_iOSTests.m */; };
+		7044A73C1C6BEA9500EB6A93 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B423AE1A1C0DF76A0004A2F1 /* ZipArchive.framework */; };
 		AFF75A2D1C3727F000F450AC /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = B423AE4A1C0DF7950004A2F1 /* ZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AFF75A2E1C37280200F450AC /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = B423AE481C0DF7950004A2F1 /* SSZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AFF75A2F1C37280200F450AC /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B423AE491C0DF7950004A2F1 /* SSZipArchive.m */; };
@@ -37,7 +39,20 @@
 		B423AE6F1C0DF83F0004A2F1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B423AE6E1C0DF83F0004A2F1 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7044A73D1C6BEA9500EB6A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B423AE111C0DF76A0004A2F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B423AE191C0DF76A0004A2F1;
+			remoteInfo = "ZipArchive-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		7044A7371C6BEA9500EB6A93 /* ZipArchive-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZipArchive-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7044A7391C6BEA9500EB6A93 /* ZipArchive_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipArchive_iOSTests.m; sourceTree = "<group>"; };
+		7044A73B1C6BEA9500EB6A93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFF75A241C37279600F450AC /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B423AE1A1C0DF76A0004A2F1 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B423AE3C1C0DF7950004A2F1 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -58,6 +73,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7044A7341C6BEA9500EB6A93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7044A73C1C6BEA9500EB6A93 /* ZipArchive.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFF75A201C37279600F450AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,11 +100,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7044A7381C6BEA9500EB6A93 /* ZipArchive-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				7044A7391C6BEA9500EB6A93 /* ZipArchive_iOSTests.m */,
+				7044A73B1C6BEA9500EB6A93 /* Info.plist */,
+			);
+			path = "ZipArchive-iOSTests";
+			sourceTree = "<group>";
+		};
 		B423AE101C0DF76A0004A2F1 = {
 			isa = PBXGroup;
 			children = (
 				B423AE6E1C0DF83F0004A2F1 /* libz.tbd */,
 				B423AE251C0DF7950004A2F1 /* SSZipArchive */,
+				7044A7381C6BEA9500EB6A93 /* ZipArchive-iOSTests */,
 				B423AE1B1C0DF76A0004A2F1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +124,7 @@
 			children = (
 				B423AE1A1C0DF76A0004A2F1 /* ZipArchive.framework */,
 				AFF75A241C37279600F450AC /* ZipArchive.framework */,
+				7044A7371C6BEA9500EB6A93 /* ZipArchive-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +194,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7044A7361C6BEA9500EB6A93 /* ZipArchive-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7044A73F1C6BEA9500EB6A93 /* Build configuration list for PBXNativeTarget "ZipArchive-iOSTests" */;
+			buildPhases = (
+				7044A7331C6BEA9500EB6A93 /* Sources */,
+				7044A7341C6BEA9500EB6A93 /* Frameworks */,
+				7044A7351C6BEA9500EB6A93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7044A73E1C6BEA9500EB6A93 /* PBXTargetDependency */,
+			);
+			name = "ZipArchive-iOSTests";
+			productName = "ZipArchive-iOSTests";
+			productReference = 7044A7371C6BEA9500EB6A93 /* ZipArchive-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AFF75A231C37279600F450AC /* ZipArchive-Mac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFF75A291C37279600F450AC /* Build configuration list for PBXNativeTarget "ZipArchive-Mac" */;
@@ -205,6 +257,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = smumryak;
 				TargetAttributes = {
+					7044A7361C6BEA9500EB6A93 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					AFF75A231C37279600F450AC = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -227,11 +282,19 @@
 			targets = (
 				B423AE191C0DF76A0004A2F1 /* ZipArchive-iOS */,
 				AFF75A231C37279600F450AC /* ZipArchive-Mac */,
+				7044A7361C6BEA9500EB6A93 /* ZipArchive-iOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7044A7351C6BEA9500EB6A93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFF75A221C37279600F450AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,6 +312,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7044A7331C6BEA9500EB6A93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7044A73A1C6BEA9500EB6A93 /* ZipArchive_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFF75A1F1C37279600F450AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,7 +346,40 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7044A73E1C6BEA9500EB6A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B423AE191C0DF76A0004A2F1 /* ZipArchive-iOS */;
+			targetProxy = 7044A73D1C6BEA9500EB6A93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7044A7401C6BEA9500EB6A93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "ZipArchive-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samsoffes.ZipArchive-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7044A7411C6BEA9500EB6A93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "ZipArchive-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samsoffes.ZipArchive-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		AFF75A2A1C37279600F450AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -448,6 +552,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7044A73F1C6BEA9500EB6A93 /* Build configuration list for PBXNativeTarget "ZipArchive-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7044A7401C6BEA9500EB6A93 /* Debug */,
+				7044A7411C6BEA9500EB6A93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AFF75A291C37279600F450AC /* Build configuration list for PBXNativeTarget "ZipArchive-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
