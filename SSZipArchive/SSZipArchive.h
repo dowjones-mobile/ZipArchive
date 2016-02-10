@@ -35,6 +35,10 @@
     progressHandler:(void (^)(NSString *entry, unz_file_info zipInfo, long entryNumber, long total))progressHandler
     completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError *error))completionHandler;
 
++ (BOOL)unzipFileAtPath:(NSString *)path
+           toDictionary:(NSMutableDictionary *)dictionary
+                  error:(NSError **)error;
+
 // Zip
 
 // without password

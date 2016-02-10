@@ -18,7 +18,7 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    _zipFileName = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@".zip"];
+    _zipFileName = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"zip"];
 }
 
 - (void)tearDown {
@@ -26,13 +26,16 @@
     [super tearDown];
 }
 
-- (void)testWriteAndRead {
+- (void)testSmallWriteAndRead {
     NSString *zipPath = [NSTemporaryDirectory() stringByAppendingPathComponent:_zipFileName];
+    
+    // Write to a temporary zip
     SSZipArchive *archive = [[SSZipArchive alloc] initWithPath:zipPath];
     [archive open];
     XCTAssert([archive isOpened], @"Could not open a zip file for writing");
     
-    NSData *inputData = [_zipFileName dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *inputString = _zipFileName;
+    NSData *inputData = [inputString dataUsingEncoding:NSUTF8StringEncoding];
     NSString *filenameInZip = @"data.txt";
     
     BOOL written = [archive writeData:inputData filename:filenameInZip withPassword:nil];
@@ -40,6 +43,19 @@
     
     [archive close];
     XCTAssert([archive isClosed], @"Could not close a zip");
+
+    // Now read it
+    NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
+    NSError *error = nil;
+    BOOL read = [SSZipArchive unzipFileAtPath:zipPath toDictionary:contents error:&error];
+    XCTAssert(read, @"Could not read contents of zip");
+    
+    XCTAssertEqual([contents count], 1, @"Should be one item in the zip");
+    NSData *outputData = [contents objectForKey:filenameInZip];
+    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+    XCTAssertNotNil(outputData, @"Could not find data in zip");
+    XCTAssertEqualObjects(outputData, inputData, @"Data was not equal");
+    XCTAssertEqualObjects(outputString, inputString, @"Data was not equal");
 }
 
 
