@@ -141,6 +141,8 @@
 		37952C881F63BBD500DD6677 /* SSZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = B423AE481C0DF7950004A2F1 /* SSZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37952C891F63BBDA00DD6677 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B423AE491C0DF7950004A2F1 /* SSZipArchive.m */; };
 		37952C8B1F63BBE400DD6677 /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = B423AE4A1C0DF7950004A2F1 /* ZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5534B9BA25DC1CDB00692165 /* ZipArchive_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5534B9B925DC1CDB00692165 /* ZipArchive_iOSTests.m */; };
+		5534B9BC25DC1CDB00692165 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B423AE1A1C0DF76A0004A2F1 /* ZipArchive.framework */; };
 		93CE5D5E227FE5C50003464F /* SSZipCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 93CE5D5D227FE5C50003464F /* SSZipCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		93CE5D5F227FE5C50003464F /* SSZipCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 93CE5D5D227FE5C50003464F /* SSZipCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		93CE5D60227FE5C50003464F /* SSZipCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 93CE5D5D227FE5C50003464F /* SSZipCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +154,16 @@
 		B423AE6C1C0DF7950004A2F1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = B423AE491C0DF7950004A2F1 /* SSZipArchive.m */; };
 		B423AE6D1C0DF7950004A2F1 /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = B423AE4A1C0DF7950004A2F1 /* ZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5534B9BD25DC1CDB00692165 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B423AE111C0DF76A0004A2F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B423AE191C0DF76A0004A2F1;
+			remoteInfo = "ZipArchive-iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3775F3252276B14100A1840B /* mz_strm_pkcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_pkcrypt.c; sourceTree = "<group>"; };
@@ -197,6 +209,9 @@
 		378439CB227AC031000BC165 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		37952C261F63B50D00DD6677 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37952C5E1F63BB7100DD6677 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5534B9B725DC1CDB00692165 /* ZipArchive-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZipArchive-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5534B9B925DC1CDB00692165 /* ZipArchive_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipArchive_iOSTests.m; sourceTree = "<group>"; };
+		5534B9BB25DC1CDB00692165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CE5D5D227FE5C50003464F /* SSZipCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipCommon.h; sourceTree = "<group>"; };
 		AFF75A241C37279600F450AC /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B423AE1A1C0DF76A0004A2F1 /* ZipArchive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZipArchive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +239,14 @@
 				378439CA227AC02B000BC165 /* libiconv.tbd in Frameworks */,
 				378439CC227AC031000BC165 /* libz.tbd in Frameworks */,
 				378439B7227ABD2B000BC165 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5534B9B425DC1CDB00692165 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5534B9BC25DC1CDB00692165 /* ZipArchive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,10 +292,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5534B9B825DC1CDB00692165 /* ZipArchive-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				5534B9B925DC1CDB00692165 /* ZipArchive_iOSTests.m */,
+				5534B9BB25DC1CDB00692165 /* Info.plist */,
+			);
+			path = "ZipArchive-iOSTests";
+			sourceTree = "<group>";
+		};
 		B423AE101C0DF76A0004A2F1 = {
 			isa = PBXGroup;
 			children = (
 				B423AE251C0DF7950004A2F1 /* SSZipArchive */,
+				5534B9B825DC1CDB00692165 /* ZipArchive-iOSTests */,
 				3775F4242276C5C000A1840B /* Frameworks */,
 				B423AE1B1C0DF76A0004A2F1 /* Products */,
 			);
@@ -285,6 +318,7 @@
 				AFF75A241C37279600F450AC /* ZipArchive.framework */,
 				37952C261F63B50D00DD6677 /* ZipArchive.framework */,
 				37952C5E1F63BB7100DD6677 /* ZipArchive.framework */,
+				5534B9B725DC1CDB00692165 /* ZipArchive-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,6 +510,24 @@
 			productReference = 37952C5E1F63BB7100DD6677 /* ZipArchive.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		5534B9B625DC1CDB00692165 /* ZipArchive-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5534B9C125DC1CDB00692165 /* Build configuration list for PBXNativeTarget "ZipArchive-iOSTests" */;
+			buildPhases = (
+				5534B9B325DC1CDB00692165 /* Sources */,
+				5534B9B425DC1CDB00692165 /* Frameworks */,
+				5534B9B525DC1CDB00692165 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5534B9BE25DC1CDB00692165 /* PBXTargetDependency */,
+			);
+			name = "ZipArchive-iOSTests";
+			productName = "ZipArchive-iOSTests";
+			productReference = 5534B9B725DC1CDB00692165 /* ZipArchive-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AFF75A231C37279600F450AC /* ZipArchive-Mac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFF75A291C37279600F450AC /* Build configuration list for PBXNativeTarget "ZipArchive-Mac" */;
@@ -528,6 +580,10 @@
 					37952C5D1F63BB7100DD6677 = {
 						CreatedOnToolsVersion = 8.3.3;
 					};
+					5534B9B625DC1CDB00692165 = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Automatic;
+					};
 					AFF75A231C37279600F450AC = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -554,6 +610,7 @@
 				AFF75A231C37279600F450AC /* ZipArchive-Mac */,
 				37952C251F63B50D00DD6677 /* ZipArchive-tvos */,
 				37952C5D1F63BB7100DD6677 /* ZipArchive-watchos */,
+				5534B9B625DC1CDB00692165 /* ZipArchive-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -567,6 +624,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		37952C5C1F63BB7100DD6677 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5534B9B525DC1CDB00692165 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -636,6 +700,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5534B9B325DC1CDB00692165 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5534B9BA25DC1CDB00692165 /* ZipArchive_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFF75A1F1C37279600F450AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -683,6 +755,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5534B9BE25DC1CDB00692165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B423AE191C0DF76A0004A2F1 /* ZipArchive-iOS */;
+			targetProxy = 5534B9BD25DC1CDB00692165 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		37952C2B1F63B50D00DD6677 /* Debug */ = {
@@ -786,6 +866,54 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		5534B9BF25DC1CDB00692165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ZipArchive-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samsoffes.ZipArchive-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5534B9C025DC1CDB00692165 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ZipArchive-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samsoffes.ZipArchive-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1022,6 +1150,15 @@
 			buildConfigurations = (
 				37952C631F63BB7100DD6677 /* Debug */,
 				37952C641F63BB7100DD6677 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5534B9C125DC1CDB00692165 /* Build configuration list for PBXNativeTarget "ZipArchive-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5534B9BF25DC1CDB00692165 /* Debug */,
+				5534B9C025DC1CDB00692165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

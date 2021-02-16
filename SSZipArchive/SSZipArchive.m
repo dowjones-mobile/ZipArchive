@@ -747,6 +747,169 @@ BOOL _fileIsSymbolicLink(const unz_file_info *fileInfo);
     return success;
 }
 
++ (BOOL)unzipFileAtPath:(NSString *)path
+           toDictionary:(NSMutableDictionary *)dictionary
+                  error:(NSError **)error
+{
+    // Begin opening
+    zipFile zip = unzOpen((const char*)[path UTF8String]);
+    if (zip == NULL)
+    {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open zip file"};
+        NSError *err = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-1 userInfo:userInfo];
+        if (error)
+        {
+            *error = err;
+        }
+        return NO;
+    }
+    
+    unsigned long long currentPosition = 0;
+    
+    unz_global_info  globalInfo = {0ul, 0ul};
+    unzGetGlobalInfo(zip, &globalInfo);
+    
+    // Begin unzipping
+    if (unzGoToFirstFile(zip) != UNZ_OK)
+    {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open first file in zip file"};
+        NSError *err = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-2 userInfo:userInfo];
+        if (error)
+        {
+            *error = err;
+        }
+        return NO;
+    }
+    
+    BOOL success = YES;
+    int ret = 0;
+    int crc_ret =0;
+    unsigned char buffer[4096] = {0};
+    NSMutableSet *directoriesModificationDates = [[NSMutableSet alloc] init];
+    
+    NSInteger currentFileNumber = 0;
+    do {
+        @autoreleasepool {
+            ret = unzOpenCurrentFile(zip);
+            
+            if (ret != UNZ_OK) {
+                success = NO;
+                break;
+            }
+            
+            // Reading data and write to file
+            unz_file_info fileInfo;
+            memset(&fileInfo, 0, sizeof(unz_file_info));
+            
+            ret = unzGetCurrentFileInfo(zip, &fileInfo, NULL, 0, NULL, 0, NULL, 0);
+            if (ret != UNZ_OK) {
+                success = NO;
+                unzCloseCurrentFile(zip);
+                break;
+            }
+            
+            currentPosition += fileInfo.compressed_size;
+            
+            char *filename = (char *)malloc(fileInfo.size_filename + 1);
+            if (filename == NULL)
+            {
+                return NO;
+            }
+            
+            unzGetCurrentFileInfo(zip, &fileInfo, filename, fileInfo.size_filename + 1, NULL, 0, NULL, 0);
+            filename[fileInfo.size_filename] = '\0';
+            
+            //
+            // Determine whether this is a symbolic link:
+            // - File is stored with 'version made by' value of UNIX (3),
+            //   as per http://www.pkware.com/documents/casestudies/APPNOTE.TXT
+            //   in the upper byte of the version field.
+            // - BSD4.4 st_mode constants are stored in the high 16 bits of the
+            //   external file attributes (defacto standard, verified against libarchive)
+            //
+            // The original constants can be found here:
+            //    http://minnie.tuhs.org/cgi-bin/utree.pl?file=4.4BSD/usr/include/sys/stat.h
+            //
+            const uLong ZipUNIXVersion = 3;
+            const uLong BSD_SFMT = 0170000;
+            const uLong BSD_IFLNK = 0120000;
+            
+            BOOL fileIsSymbolicLink = NO;
+            if (((fileInfo.version >> 8) == ZipUNIXVersion) && BSD_IFLNK == (BSD_SFMT & (fileInfo.external_fa >> 16))) {
+                fileIsSymbolicLink = NO;
+            }
+            
+            // Check if it contains directory
+            NSString *strPath = @(filename);
+            BOOL isDirectory = NO;
+            if (filename[fileInfo.size_filename-1] == '/' || filename[fileInfo.size_filename-1] == '\\') {
+                isDirectory = YES;
+            }
+            free(filename);
+            
+            // Contains a path
+            if ([strPath rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"/\\"]].location != NSNotFound) {
+                strPath = [strPath stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
+            }
+            
+            NSMutableData *data = [[NSMutableData alloc] initWithCapacity:fileInfo.uncompressed_size];
+            while (data) {
+                int readBytes = unzReadCurrentFile(zip, buffer, 4096);
+                
+                if (readBytes > 0) {
+                    [data appendBytes:buffer length:readBytes];
+                } else {
+                    break;
+                }
+            }
+            [dictionary setObject:[data copy] forKey:strPath];
+            
+            crc_ret = unzCloseCurrentFile( zip );
+            if (crc_ret == UNZ_CRCERROR) {
+                //CRC ERROR
+                success = NO;
+                break;
+            }
+            ret = unzGoToNextFile( zip );
+            
+            currentFileNumber++;
+        }
+    } while(ret == UNZ_OK && ret != UNZ_END_OF_LIST_OF_FILE);
+    
+    // Close
+    unzClose(zip);
+    
+    // The process of decompressing the .zip archive causes the modification times on the folders
+    // to be set to the present time. So, when we are done, they need to be explicitly set.
+    // set the modification date on all of the directories.
+    NSError * err = nil;
+    for (NSDictionary * d in directoriesModificationDates) {
+        if (![[NSFileManager defaultManager] setAttributes:@{NSFileModificationDate: d[@"modDate"]} ofItemAtPath:d[@"path"] error:&err]) {
+            NSLog(@"[SSZipArchive] Set attributes failed for directory: %@.", d[@"path"]);
+        }
+        if (err) {
+            NSLog(@"[SSZipArchive] Error setting directory file modification date attribute: %@",err.localizedDescription);
+        }
+    }
+    
+#if !__has_feature(objc_arc)
+    [directoriesModificationDates release];
+#endif
+    
+    NSError *retErr = nil;
+    if (crc_ret == UNZ_CRCERROR)
+    {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"crc check failed for file"};
+        retErr = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-3 userInfo:userInfo];
+    }
+    if (error)
+    {
+        *error = retErr;
+    }
+    return success;
+}
+
+
 #pragma mark - Zipping
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray<NSString *> *)paths
 {
@@ -861,6 +1024,10 @@ BOOL _fileIsSymbolicLink(const unz_file_info *fileInfo);
 }
 
 
+- (BOOL)isOpened {
+    return _zip != NULL;
+}
+
 - (BOOL)open
 {
     NSAssert((_zip == NULL), @"Attempting to open an archive which is already open");
@@ -958,11 +1125,15 @@ BOOL _fileIsSymbolicLink(const unz_file_info *fileInfo);
     return error == ZIP_OK;
 }
 
+- (BOOL)isClosed {
+    return _zip == NULL;
+}
+
 - (BOOL)close
 {
     NSAssert((_zip != NULL), @"[SSZipArchive] Attempting to close an archive which was never opened");
     int error = zipClose(_zip, NULL);
-    _zip = nil;
+    _zip = NULL;
     return error == ZIP_OK;
 }
 

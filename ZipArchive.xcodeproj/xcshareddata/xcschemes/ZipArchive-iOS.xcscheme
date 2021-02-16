@@ -27,7 +27,26 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B423AE191C0DF76A0004A2F1"
+            BuildableName = "ZipArchive.framework"
+            BlueprintName = "ZipArchive-iOS"
+            ReferencedContainer = "container:ZipArchive.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7044A7361C6BEA9500EB6A93"
+               BuildableName = "ZipArchive-iOSTests.xctest"
+               BlueprintName = "ZipArchive-iOSTests"
+               ReferencedContainer = "container:ZipArchive.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
