@@ -28,19 +28,19 @@
 
 - (void)testSmallWriteAndRead {
     NSString *zipPath = [NSTemporaryDirectory() stringByAppendingPathComponent:_zipFileName];
-    
+
     // Write to a temporary zip
     SSZipArchive *archive = [[SSZipArchive alloc] initWithPath:zipPath];
     [archive open];
     XCTAssert([archive isOpened], @"Could not open a zip file for writing");
-    
+
     NSString *inputString = _zipFileName;
     NSData *inputData = [inputString dataUsingEncoding:NSUTF8StringEncoding];
     NSString *filenameInZip = @"data.txt";
-    
+
     BOOL written = [archive writeData:inputData filename:filenameInZip withPassword:nil];
     XCTAssert(written, @"Could not write data");
-    
+
     [archive close];
     XCTAssert([archive isClosed], @"Could not close a zip");
 
@@ -49,7 +49,7 @@
     NSError *error = nil;
     BOOL read = [SSZipArchive unzipFileAtPath:zipPath toDictionary:contents error:&error];
     XCTAssert(read, @"Could not read contents of zip");
-    
+
     XCTAssertEqual([contents count], 1, @"Should be one item in the zip");
     NSData *outputData = [contents objectForKey:filenameInZip];
     NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
@@ -68,12 +68,12 @@
 
 - (void)testComplexWriteAndRead {
     NSString *zipPath = [NSTemporaryDirectory() stringByAppendingPathComponent:_zipFileName];
-    
+
     // Write to a temporary zip
     SSZipArchive *archive = [[SSZipArchive alloc] initWithPath:zipPath];
     [archive open];
     XCTAssert([archive isOpened], @"Could not open a zip file for writing");
-    
+
     int items = 23;
     for (int i = 0; i < items; i++) {
         NSString *inputFilename = [[[NSUUID UUID] UUIDString] stringByAppendingPathExtension:@"txt"];
@@ -81,16 +81,16 @@
         BOOL written = [archive writeData:inputData filename:inputFilename withPassword:nil];
         XCTAssert(written, @"Could not write data");
     }
-    
+
     [archive close];
     XCTAssert([archive isClosed], @"Could not close a zip");
-    
+
     // Now read it
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
     NSError *error = nil;
     BOOL read = [SSZipArchive unzipFileAtPath:zipPath toDictionary:contents error:&error];
     XCTAssert(read, @"Could not read contents of zip");
-    
+
     XCTAssertEqual([contents count], items, @"Should be one item in the zip");
     for (NSString *outputFilename in [contents allKeys]) {
         NSData *outputData = [contents objectForKey:outputFilename];
